@@ -68,7 +68,6 @@ RSpec.describe "Api::Users", type: :request do
       end
     end
   end
-
   
   describe 'PUT /api/users/:id' do
     before do
