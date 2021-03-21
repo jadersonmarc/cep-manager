@@ -17,7 +17,7 @@ class RestService
     }
   end
 
-  def entities(data)
+  def send(data)
     url   = @base_url + data
     request = RestClient.get(url, headers)
     JSON.parse(request.body)
