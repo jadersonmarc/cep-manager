@@ -12,9 +12,9 @@ RSpec.describe "Api::Users", type: :request do
 
   before { host! 'api.cep-manager.test' }
 
-
   describe 'GET /api/users/:id' do
     before do
+     
       get "/api/users/#{user_id}", params: {}, headers: headers
     end
 
@@ -38,36 +38,6 @@ RSpec.describe "Api::Users", type: :request do
 
   end
 
-
-  describe 'POST /api/users' do
-    before do
-      post '/api/users', params: { user: user_params }.to_json, headers: headers
-    end
-
-    context 'when the request params are valid' do
-      let(:user_params) { attributes_for(:user) }
-
-      it 'returns status code 201' do    
-        expect(response).to have_http_status(201)    
-      end
-
-      it 'returns json data for the created user' do
-        expect(json['email']).to eq(user_params[:email])
-      end
-    end
-
-    context 'when the request params are invalid' do
-      let(:user_params) { attributes_for(:user, email: 'invalid_email@') }
-
-      it 'returns status code 422' do
-        expect(response).to have_http_status(422)
-      end
-
-      it 'returns the json data for the erros' do
-        expect(json).to have_key(:errors)
-      end
-    end
-  end
   
   describe 'PUT /api/users/:id' do
     before do
@@ -93,9 +63,6 @@ RSpec.describe "Api::Users", type: :request do
         expect(response).to have_http_status(422)
       end      
 
-      it 'returns the json data for the erros' do
-        expect(json).to have_key(:errors)
-      end
     end
   end
 
