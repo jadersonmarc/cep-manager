@@ -18,7 +18,7 @@ class RestService
   end
 
   def send(data)
-    url   = @base_url + data
+    url = @base_url + data
     request = RestClient.get(url, headers)
     JSON.parse(request.body)
   end
